@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
@@ -43,5 +44,14 @@ class Database_Helper{
   Future<int> insertMember(Member m) async {
     final db = await instance.database;
     return await db.insert('member', m.toMap());
+  }
+
+  // 모든 회원 조회
+  Future<List<Map<String, dynamic>>> getListUsers() async {
+    final db = await instance.database;
+   // final users = await db.query('member');
+
+   // return users.map((json) => Member.fromMap(json)).toList();
+    return await db.query('member');
   }
 }
