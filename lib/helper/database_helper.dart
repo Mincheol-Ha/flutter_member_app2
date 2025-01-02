@@ -23,14 +23,14 @@ class Database_Helper{
   Future<Database> _initDB(String filePath) async {
     final dbPath = await getDatabasesPath();
     final path = join(dbPath, filePath);
-    return await openDatabase(path, version: 1, onCreate: _createDB,);
+    return await openDatabase(path, version: 2, onCreate: _createDB,);
   }
   // 테이블 생성
   FutureOr<void> _createDB(Database db, int version) async {
     await db.execute('''
         CREATE TABLE member (
           mno INTEGER PRIMARY KEY AUTOINCREMENT,
-          user_id TEXT NOT NULL UNIQUE,
+          userid TEXT NOT NULL UNIQUE,
           passwd TEXT NOT NULL,
           name TEXT NOT NULL,
           email TEXT NOT NULL,
